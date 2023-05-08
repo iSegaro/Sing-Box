@@ -1,0 +1,48 @@
+{
+    "log": {
+        "level": "info",
+        "timestamp": true
+    },
+    "inbounds": [
+        {
+            "type": "vless",
+            "tag": "vless-in",
+            "listen": "::",
+            "listen_port": 443,
+            "sniff": true,
+            "sniff_override_destination": true,
+            "domain_strategy": "ipv4_only",
+            "users": [
+                {
+                        "uuid": "E66E8785-9284-493D-BF48-8232AA3686EA", //با این دستور بسازید ./sing-box generate uuid
+            "flow": "xtls-rprx-vision"
+                }
+            ],
+            "tls": {
+                "enabled": true,
+                                "server_name": "xxxxxxx", //طبق توضیحات در اموزش SNI پیدا کنید
+                "reality": {
+                    "enabled": true,
+                    "handshake": {
+                                        "server": "xxxxxxx", //طبق توضیحات در اموزش SNI پیدا کنید
+                    "server_port": 443
+                    },
+                                        "private_key": "qAdSu-xtsEOlP-xfysiAdiU-NxUBWmxZ63OOnTEMFFk", //با این دستور بسازید ./sing-box generate reality-keypair
+                    "short_id": [ 
+                                       "6ba85179e30d4fc2" //با این دستور بسازید ./sing-box generate rand --hex 8
+                    ]
+                }
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "type": "direct",
+            "tag": "direct"
+        },
+        {
+            "type": "block",
+            "tag": "block"
+        }
+    ]
+}
