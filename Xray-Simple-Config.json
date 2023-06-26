@@ -1,0 +1,48 @@
+{
+  "log": {
+    "access": "none",
+    "error": "",
+    "loglevel": "warning"
+  },
+  "inbounds": [
+    {
+      "port": 2082,
+      "protocol": "vless",
+      "settings": {
+        "udp": false,
+        "clients": [
+          {
+            "id": "25e4ddab-6a6b-4ee1-ee63-5df3ff034724",
+            "alterId": 0,
+            "email": "t@t.tt",
+            "flow": ""
+          }
+        ],
+        "decryption": "none",
+        "allowTransparent": false
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "tcpSettings": {
+          "header": {
+            "type": "http"
+          }
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom"
+    },
+    {
+      "tag": "block",
+      "protocol": "blackhole",
+      "settings": {}
+    }
+  ],
+  "routing": {
+    "domainStrategy": "IPIfNonMatch",
+    "rules": []
+  }
+}
