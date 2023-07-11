@@ -1,0 +1,124 @@
+{
+    "dns": {
+    "servers": [
+      {
+        "address": "tcp://1.1.1.3",
+        "detour": "dns"
+      },
+	{
+        "address": "tcp://208.67.222.123",
+        "detour": "dns"
+      }
+    ],
+    "strategy": "ipv4_only"
+  },
+    "inbounds": [
+        {
+            "type": "vless",
+            "tag": "vless-in",
+            "listen": "::",
+            "listen_port": 443,
+            "sniff": true,
+            "sniff_override_destination": true,
+            "domain_strategy": "ipv4_only",
+            "users": [
+                {
+        "uuid": "u045697a-87b2-48db-94fc-e236529aeb5e",
+            "flow": ""
+                }
+            ],
+            "tls": {
+                "enabled": true,
+            "server_name": "www.google.com",
+                "reality": {
+                    "enabled": true,
+                    "handshake": {
+                    "server": "www.google.com",
+                    "server_port": 443
+                    },
+               "private_key": "sdDDjbbBlg7_MxGgxlptLshQYprjtOdWfmkdJ_z0o",
+                    "short_id": [ 
+                    "1439f9c9f67bb14"
+                    ]
+                }
+            },
+			"transport": {
+				"type": "grpc",
+				"service_name": "iSegaro",
+				"idle_timeout": "15s",
+				"ping_timeout": "15s",
+				"permit_without_stream": false
+			}
+        }
+    ],
+    "outbounds": [
+        {
+      "type": "direct"
+    },
+    {
+      "type": "direct",
+      "tag": "dns"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    }
+    ],
+  "route": {
+    "rules": [
+      {
+        "geoip": [
+          "cn",
+          "ir",
+          "private"
+        ],
+        "outbound": "block"
+      },
+      {
+        "geosite": [
+          "category-porn",
+          "category-ads-all"
+        ],
+        "outbound": "block"
+      },
+      {
+        "ip_cidr": [
+          "0.0.0.0/8",
+          "10.0.0.0/8",
+          "100.64.0.0/10",
+          "127.0.0.0/8",
+          "169.254.0.0/16",
+          "172.16.0.0/12",
+          "192.0.0.0/24",
+          "192.0.2.0/24",
+          "192.168.0.0/16",
+          "198.18.0.0/15",
+          "198.51.100.0/24",
+          "203.0.113.0/24",
+          "::1/128",
+          "fc00::/7",
+          "fe80::/10"
+        ],
+        "outbound": "block"
+      },
+      {
+        "network": "tcp",
+        "port": [
+          25,
+          587,
+          465,
+          2525
+        ],
+        "outbound": "block"
+      },
+      {
+        "domain": [
+          "http://harwebsitikemikhaidblockshe.com",
+          "http://harwebsitikemikhaidblockshe.com",
+          "http://icecyber.org"
+        ],
+        "outbound": "block"
+      }
+    ]
+  }
+}
