@@ -113,9 +113,9 @@
       },
       {
         "domain": [
-          "http://harwebsitikemikhaidblockshe.com",
-          "http://harwebsitikemikhaidblockshe.com",
-          "http://icecyber.org"
+          "harwebsitikemikhaidblockshe.com",
+          "harwebsitikemikhaidblockshe.com",
+          "icecyber.org"
         ],
         "outbound": "block"
       }
